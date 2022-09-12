@@ -1,0 +1,37 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+
+body{background-color: #26202D;}
+
+textarea {
+    color: white;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    line-height: 1.5;
+    padding: 15px 15px 30px;
+    border-radius: 3px;
+    border: 1px solid #F7E98D;
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: #26202D;
+}
+
+body {
+    text-align: center;
+}
+
+button {
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: Tomato;
+    font-weight: bold;
+    width: 200px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 9px #ddc09e;
+    background-color: #fff4ed;
+}
