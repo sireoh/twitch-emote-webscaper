@@ -1,2 +1,1 @@
-# twitch-yt-emote-webscaper
-Twitch and YouTube Emote Webscraper
+Twitch, Discord and YouTube Emote Webscraper
