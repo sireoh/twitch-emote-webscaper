@@ -1,16 +1,18 @@
-<title>Eoh's YouTube, Twitch and Discord Emote Webscraper v0.1</title>
-
-<html>
+<html lang="en">
 <head>
-    <meta charset=“UTF-8”>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <title>emote webscraper | eoh</title>
+    <link rel="icon" type="image/png" href="daru.png">
 </head>
 <body>
-    <p id="output_img"></p>
-    <form onsubmit="return webscrapeAll()">
-        <textarea id="input_text" rows="12" cols="60"></textarea><br>
-        <button type="submit">Webscrape</button>
-    </form>
-    <script src="app.js"></script>
+    <div class="container">
+        <textarea id="text"></textarea>
+        <a href="#" onClick="webscrape()">Webscrape</a>
+        <div id="out"></div>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
