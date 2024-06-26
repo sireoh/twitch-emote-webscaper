@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name": "Twitch Emote Webscraper",
+    "version": "1.0",
+  
+    "description": "Downloads all the emotes from a streamer.",
+  
+    "icons": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["https://www.twitch.tv/*"],
+        "js": ["webscrape.js"]
+      }
+    ],
+
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "emote-webscraper@vincef.xyz"
+      }
+    },
+
+    "permissions" : ["<all_urls>"]
+}
