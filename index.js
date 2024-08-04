@@ -1,92 +1,63 @@
-const subButton = document.querySelector('.kITeBB');
-subButton.addEventListener('click', function() {
-    console.log("Sub button has been clicked.");
-    setTimeout(changeMenu, 800);
-});
+const svgs = {
+  "download" : `<svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true" role="presentation"><path d="M2 16v-3h2v3h12v-3h2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm13-9-1.5 1.5L11 6v7H9V6L6.5 8.5 5 7l5-5 5 5z"></path></svg>`,
+}
 
-function changeMenu() {
-    //Debug
-    console.log("Changing menu ...");
+let arr = [];
 
-    //Show All Button, Click Expand Once
-    const temp = document.querySelectorAll('.jNkQyB');
-    const showAllButton = temp;
+function createButton(svg, name, id) {
+  let str = `
+  <div class="Layout-sc-1xcs6mc-0">
+      <div class="Layout-sc-1xcs6mc-0">
+          <div class="InjectLayout-sc-1i43xsx-0">
+              <button class="ScCoreButton-sc-ocjdkq-0 ScCoreButtonPrimary-sc-ocjdkq-1 ljgEdo gmCwLG ${id}">
+                  <div class="ScCoreButtonLabel-sc-s7h2b7-0 bQmsUi">
+                      <div class="Layout-sc-1xcs6mc-0 iyOCUH">
+                          <div class="ScCoreButtonIcon-sc-ypak37-0 evnVIg tw-core-button-icon">
+                              <div class="ScFigure-sc-wkgzod-0 fewniq tw-svg" data-a-selector="tw-core-button-icon">
+                              ${svg}
+                          </div>
+                      </div>
+                  </div>
+                  <div data-a-target="tw-core-button-label-text" class="Layout-sc-1xcs6mc-0 cFsYRp">${name}</div>
+              </button>
+          </div>
+      </div>
+  </div>`;
+  return str;
+}
 
-    showAllButton.forEach(e => {
-        e.click();
-    });
+function setEmoteButton() {
+  const inputButtons = document.getElementsByClassName("Layout-sc-1xcs6mc-0 dIcAFo");
+  const emoteButton = inputButtons[0].children[0].children[1].children[0];
+  emoteButton.addEventListener("click", () => {
+    setTimeout(injectMenu, 700);
+  });
+  return emoteButton;
+}
 
-    //Change Description
-    const webscrapeDescription = document.querySelector('.faZJrF');
-    webscrapeDescription.innerHTML = `
-        <p class="CoreText-sc-1txzju1-0 kTxYoY">eo's twitch webscraper:</p>
-    `;
-     
-    //Add Button
-    const webscrapeButton = document.querySelector('.fKknXG');
-    webscrapeButton.innerHTML = `
-        <button style="background:white; color:black; padding:1rem; border-radius:1rem; display:flex" id="webscrapeButton" style="cursor=pointer;">
-            <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true" role="presentation">
-                <path d="M2 16v-3h2v3h12v-3h2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm13-9-1.5 1.5L11 6v7H9V6L6.5 8.5 5 7l5-5 5 5z"></path>
-            </svg>
-            &nbsp;Webscrape
-        </button>
-    `;
-    webscrapeButton.addEventListener("click", webscrape);
+function injectMenu() {
+  const bottomBox = document.getElementsByClassName("tw-mg-1 tw-border-t tw-pd-t-1 tw-mg-b-0");
+  const id = "a292de5-1a37-4dc9-a34a-8a972b70e583";
+
+  if (bottomBox[0]) {
+    const buttonDesc = bottomBox[0].childNodes[0];
+    buttonDesc.data = "Click here to webscrape the emotes.";
+
+    const bottomButtons = bottomBox[0].childNodes[1];
+    bottomButtons.outerHTML = createButton(svgs.download, "Webscrape", id);
+    
+    const webcrapeButton = document.getElementsByClassName(id);
+    webcrapeButton[0].addEventListener("click", webscrape);
+  }
 }
 
 function webscrape() {
-    let data = {
-        links : [],
-        names : []
-    };
-    const emotesArr = document.querySelectorAll('.jpIOLU');
-    emotesArr.forEach(e => {
-        let imgDiv = e.getElementsByTagName('img')[0];
-        let imgLg = imgDiv.src.split('/dark/')[0] + "/dark/3.0";
-
-        //Name and Link
-        data.names.push(imgDiv.alt);
-        data.links.push(imgLg);
-    });
-    console.log(data);
-    downloadAllImages(data);
+  const emoteGrid = document.getElementsByClassName("tw-pd-1 tw-border-b tw-c-background-alt tw-align-center");
+  console.log(emoteGrid[0]);
 }
 
-// Function to download an image from URL and save it
-async function downloadImage(url, name) {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-  
-      // Create a temporary anchor element
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${name}.jpg`; // Assuming images are JPG
-      a.style.display = 'none';
-      document.body.appendChild(a);
-  
-      // Use setTimeout to wait for the element to be added to the document
-      setTimeout(() => {
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(a.href);
-        console.log(`Downloaded ${name}`);
-      }, 100);
-  
-    } catch (error) {
-      console.error(`Error downloading ${name}: ${error.message}`);
-    }
-  }
-  
-  // Download all images
-  async function downloadAllImages(data) {
-    const { links, names } = data;
-    const promises = links.map((link, index) => downloadImage(link, names[index]));
-    try {
-      await Promise.all(promises);
-      console.log('All images downloaded!');
-    } catch (error) {
-      console.error(`Error downloading images: ${error.message}`);
-    }
-  }
+function setup() {
+  console.log(setEmoteButton());
+}
+
+setTimeout(setup, 700);
