@@ -2,7 +2,11 @@ const svgs = {
   "download" : `<svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true" role="presentation"><path d="M2 16v-3h2v3h12v-3h2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm13-9-1.5 1.5L11 6v7H9V6L6.5 8.5 5 7l5-5 5 5z"></path></svg>`,
 }
 
-let arr = [];
+let data = {
+  "nodes": [],
+  "names": [],
+  "links": []
+};
 
 function createButton(svg, name, id) {
   let str = `
@@ -51,9 +55,34 @@ function injectMenu() {
   }
 }
 
-function webscrape() {
+async function webscrape() {
   const emoteGrid = document.getElementsByClassName("tw-pd-1 tw-border-b tw-c-background-alt tw-align-center");
-  console.log(emoteGrid[0]);
+  for (let i = 0; i < emoteGrid[0].children.length-1; i++) {
+    const node = await emoteGrid[0].children[i].getElementsByTagName("img");
+    data.nodes.push(node[0]);
+  }
+  setNames();
+  setLinks();
+
+  console.log(data);
+}
+
+async function setNames() {
+  console.log("setting names ...");
+  for (let i = 0; i < data.nodes.length; i++) {
+    data.names.push(data.nodes[i].alt);
+  }
+}
+
+async function setLinks() {
+  console.log("setting links ...");
+  for (let i = 0; i < data.nodes.length; i++) {
+    data.links.push(formatLinks(data.nodes[i].src));
+  }
+}
+
+function formatLinks(str) {
+  return str.replace("1.0", "3.0");
 }
 
 function setup() {
