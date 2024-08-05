@@ -114,10 +114,6 @@ function formatLinks(str) {
   return str.replace("1.0", "3.0");
 }
 
-function setup() {
-  console.log(setEmoteButton());
-}
-
 async function download(url, name) {
   try {
     const response = await fetch(url);
@@ -154,4 +150,23 @@ async function downloadAll() {
     }
 }
 
+function setup() {
+  try {
+    setEmoteButton();
+  } catch (error) {
+    //If Offline
+    console.log("Not found.");
+    setTimeout(() => {
+      const menu = document.getElementsByClassName("Layout-sc-1xcs6mc-0 ScScrollArea-sc-17qqzr5-0 gZlwxP chpVl");
+      const chatButton = menu[0].children[4].children[0];
+      chatButton.click();
+      setTimeout(() => {
+        console.log("Setting emote button ...");
+        setEmoteButton();
+      }, 3000);
+    }, 700);
+  }
+}
+
+//If Online
 setTimeout(setup, 700);
