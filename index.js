@@ -2,6 +2,8 @@ const svgs = {
   "download" : `<svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true" role="presentation"><path d="M2 16v-3h2v3h12v-3h2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm13-9-1.5 1.5L11 6v7H9V6L6.5 8.5 5 7l5-5 5 5z"></path></svg>`,
 }
 
+const emoteGrid = document.getElementsByClassName("tw-pd-1 tw-border-b tw-c-background-alt tw-align-center");
+
 let data = {
   "nodes": [],
   "names": [],
@@ -9,8 +11,9 @@ let data = {
 };
 
 function createButton(svg, name, id) {
-  let str = `
-  <div class="Layout-sc-1xcs6mc-0">
+  let obj = {
+    "node": document.createElement("div"),
+    "str": `
       <div class="Layout-sc-1xcs6mc-0">
           <div class="InjectLayout-sc-1i43xsx-0">
               <button class="ScCoreButton-sc-ocjdkq-0 ScCoreButtonPrimary-sc-ocjdkq-1 ljgEdo gmCwLG ${id}">
@@ -25,16 +28,26 @@ function createButton(svg, name, id) {
                   <div data-a-target="tw-core-button-label-text" class="Layout-sc-1xcs6mc-0 cFsYRp">${name}</div>
               </button>
           </div>
-      </div>
-  </div>`;
-  return str;
+        </div>`
+  };
+
+  obj.node.className = "Layout-sc-1xcs6mc-0";
+  obj.node.innerHTML  = obj.str;
+  return obj;
 }
 
-function createMenu(svg, name, id) {
-  const str = `
-  <div class="tw-mg-1 tw-border-t tw-pd-t-1 tw-mg-b-0">
-    ${createButton(svg, name, id)}
-  </div>`;
+function createMenu(svg, name, id, text) {
+  let obj = {
+    "node": document.createElement("div"),
+    "desc": document.createTextNode(text),
+    "str": ""
+  }
+  obj.node.className = "tw-mg-1 tw-border-t tw-pd-t-1 tw-mg-b-0";
+  obj.node.appendChild(obj.desc);
+  obj.node.appendChild(createButton(svg, name, id).node);
+
+  obj.str = obj.node.outerHTML;
+  return obj;
 }
 
 function setEmoteButton() {
@@ -48,25 +61,31 @@ function setEmoteButton() {
 
 function injectMenu() {
   const bottomBox = document.getElementsByClassName("tw-mg-1 tw-border-t tw-pd-t-1 tw-mg-b-0");
-    const id = "a292de5-1a37-4dc9-a34a-8a972b70e583";
+  const id = "a292de5-1a37-4dc9-a34a-8a972b70e583";
 
     if (bottomBox[0]) {
       const buttonDesc = bottomBox[0].childNodes[0];
       buttonDesc.data = "Click here to webscrape the emotes.";
 
       const bottomButtons = bottomBox[0].childNodes[1];
-      bottomButtons.outerHTML = createButton(svgs.download, "Webscrape", id);
+      bottomButtons.outerHTML = createButton(svgs.download, "Webscrape", id).str;
       
-      const webcrapeButton = document.getElementsByClassName(id);
-      webcrapeButton[0].addEventListener("click", webscrape);
+      setWebscrape(id);
     } else {
       console.log("User is subbed.");
+      emoteGrid[0].appendChild(createMenu(svgs.download, "Webscrape", id, "Click here to webscrape the emotes.").node);
+
+      setWebscrape(id);
     }
 }
 
+function setWebscrape(id) {
+  const webcrapeButton = document.getElementsByClassName(id);
+  webcrapeButton[0].addEventListener("click", webscrape);
+}
+
 async function webscrape() {
-  const emoteGrid = document.getElementsByClassName("tw-pd-1 tw-border-b tw-c-background-alt tw-align-center");
-  for (let i = 0; i < emoteGrid[0].children.length-1; i++) {
+  for (let i = 0; i < emoteGrid[0].childElementCount-1; i++) {
     const node = await emoteGrid[0].children[i].getElementsByTagName("img");
     data.nodes.push(node[0]);
   }
