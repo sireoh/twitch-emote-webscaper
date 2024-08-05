@@ -27,4 +27,4 @@
 ![webscrape button](./tutorial/explorer_eoh8bLSK6eR.png)
 
 > [!IMPORTANT]
-> It is ILLEGAL to webscrape emotes on twitch, I am not responsible for anything that happens.
+> It is **ILLEGAL** to webscrape emotes on twitch, I am not responsible for anything that happens.
