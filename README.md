@@ -4,13 +4,12 @@
 > All the files will be downloaded to the default Downloads folder root!
 > ![set downloads path](./tutorial/firefox_eohu2p0MXEd.png)
 
+# **Tutorial**
+## **Step #1:**
 > [!IMPORTANT]
 > If the streamer is :green_circle: **ONLINE**, please wait 3-5 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
 > 
 > If the streamer is :red_circle: **OFFLINE**, please wait 5-10 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
-
-# **Tutorial**
-## **Step #1:**
 ### Click ![emote menu](./tutorial/firefox_eohgpnVNmrf.png)
 ![emote menu](./tutorial/firefox_eohIbtensYf.png)
 
