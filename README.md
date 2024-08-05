@@ -1,11 +1,13 @@
-[!CAUTION]
-Before webscraping, make sure to have the correct folder set for your emotes.
-As all the files will be downloaded to the default Downloads folder root!
-![set downloads path](./tutorial/firefox_eohu2p0MXEd.png)
+> [!CAUTION]
+> Before webscraping, make sure to have the correct folder set for your emotes.
+> 
+> All the files will be downloaded to the default Downloads folder root!
+> ![set downloads path](./tutorial/firefox_eohu2p0MXEd.png)
 
-[!IMPORTANT]
-If the streamer is ONLINE, please wait 3-5 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
-If the streamer is OFFLINE, please wait 5-10 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
+> [!IMPORTANT]
+> If the streamer is **ONLINE**, please wait 3-5 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
+> 
+> If the streamer is **OFFLINE**, please wait 5-10 seconds for ![emote menu](./tutorial/firefox_eohgpnVNmrf.png) to get set.
 
 # **Tutorial**
 ## **Step #1:**
@@ -24,5 +26,5 @@ If the streamer is OFFLINE, please wait 5-10 seconds for ![emote menu](./tutoria
 ### The emotes webscraped here belongs to **me**, for copyright sake.
 ![webscrape button](./tutorial/explorer_eoh8bLSK6eR.png)
 
-[!IMPORTANT]
-It is ILLEGAL to webscrape emotes on twitch, I am not responsible for anything that happens.
+> [!IMPORTANT]
+> It is ILLEGAL to webscrape emotes on twitch, I am not responsible for anything that happens.
