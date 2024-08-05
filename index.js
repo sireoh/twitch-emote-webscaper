@@ -163,10 +163,10 @@ function setup() {
       setTimeout(() => {
         console.log("Setting emote button ...");
         setEmoteButton();
-      }, 3000);
+      }, 5000);
     }, 700);
   }
 }
 
 //If Online
-setTimeout(setup, 700);
+setTimeout(setup, 3000);
